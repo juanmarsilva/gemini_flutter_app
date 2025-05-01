@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:gemini_ui_app/presentation/providers/chat/basic_chat.dart';
 import 'package:gemini_ui_app/presentation/providers/chat/is_gemini_writing.dart';
 import 'package:gemini_ui_app/presentation/providers/users/user_provider.dart';
+import 'package:gemini_ui_app/presentation/widgets/chat/custom_bottom_input.dart';
 
 class BasicPropmpScreen extends ConsumerWidget {
   const BasicPropmpScreen({super.key});
@@ -28,9 +32,20 @@ class BasicPropmpScreen extends ConsumerWidget {
         theme: DarkChatTheme(),
         showUserNames: true,
 
-        // showUserAvatars: true,
+        // Custom Input Area
+        customBottomWidget: CustomBottomInput(
+          onSend: (partialText, {images = const []}) {
+            final basicChatNotifier = ref.read(basicChatProvider.notifier);
+            basicChatNotifier.addMessage(
+              partialText: partialText,
+              user: user,
+              images: images,
+            );
+          },
+        ),
+
         typingIndicatorOptions: TypingIndicatorOptions(
-          typingUsers: isGeminiWriting ? [geminiUser] : [], // todo
+          typingUsers: isGeminiWriting ? [geminiUser] : [],
           customTypingWidget: Center(child: Text('Gemini esta pensando...')),
         ),
       ),
