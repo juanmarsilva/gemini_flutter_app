@@ -82,8 +82,13 @@ class GeneratedImageGallery extends ConsumerWidget {
     final generatedImages = ref.watch(generatedImagesProvider);
     final isGenerating = ref.watch(isGeneratingProvider);
 
+    final PageController pageController = PageController(
+      viewportFraction: 0.6,
+      initialPage: 0,
+    );
+
     return SizedBox(
-      height: 250,
+      height: 200,
       child: PageView(
         onPageChanged: (index) {
           if (index == generatedImages.length - 1) {
@@ -92,10 +97,7 @@ class GeneratedImageGallery extends ConsumerWidget {
                 .generateImageWithPreviousPrompt();
           }
         },
-        controller: PageController(
-          viewportFraction: 0.6, // Muestra 1.5 imágenes en la pantalla
-          initialPage: 0,
-        ),
+        controller: pageController,
         padEnds: true, // Cambiado a true para centrar la primera imagen
         children: [
           if (generatedImages.isEmpty && !isGenerating)
@@ -120,8 +122,8 @@ class GeneratedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 200,
+      width: 150,
+      height: 150,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.blue,
@@ -184,8 +186,8 @@ class EmptyPlaceholderImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 200,
+      width: 150,
+      height: 150,
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.deepPurple,
