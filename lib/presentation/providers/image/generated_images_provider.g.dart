@@ -6,12 +6,12 @@ part of 'generated_images_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$generatedImagesHash() => r'8abafd53404c5bdd11f7fa8359ffbb9dae0cbf8e';
+String _$generatedImagesHash() => r'f6621a911a9d03962a938f512a97bd8d38d05568';
 
 /// See also [GeneratedImages].
 @ProviderFor(GeneratedImages)
 final generatedImagesProvider =
-    AutoDisposeNotifierProvider<GeneratedImages, List<String>>.internal(
+    NotifierProvider<GeneratedImages, List<String>>.internal(
       GeneratedImages.new,
       name: r'generatedImagesProvider',
       debugGetCreateSourceHash:
@@ -22,6 +22,6 @@ final generatedImagesProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$GeneratedImages = AutoDisposeNotifier<List<String>>;
+typedef _$GeneratedImages = Notifier<List<String>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -2,10 +2,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'selected_art_provider.g.dart';
 
-@riverpod
-class SelectedArt extends _$SelectedArt {
+@Riverpod(keepAlive: true)
+class SelectedArtStyle extends _$SelectedArtStyle {
   @override
-  build() => '';
+  String build() => '';
 
   void setSelectedArt(String art) {
     if (state == art) {
