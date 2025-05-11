@@ -119,7 +119,6 @@ class GeminiImpl {
 
       return response.data['imageUrl'];
     } catch (e) {
-      print(e);
       return null;
     }
   }
