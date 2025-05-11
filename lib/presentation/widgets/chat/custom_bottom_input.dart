@@ -40,11 +40,14 @@ class _CustomBottomInputState extends State<CustomBottomInput> {
       final partialText = types.PartialText(text: text);
 
       widget.onSend(partialText, images: images);
+
       setState(() {
         text = '';
         controller.clear();
         images = [];
       });
+
+      FocusScope.of(context).unfocus();
     }
 
     void onAttachmentPressed() async {
