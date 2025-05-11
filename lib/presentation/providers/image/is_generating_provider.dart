@@ -5,7 +5,7 @@ part 'is_generating_provider.g.dart';
 @riverpod
 class IsGenerating extends _$IsGenerating {
   @override
-  build() => false;
+  bool build() => false;
 
   void setIsGenerating() {
     state = true;
