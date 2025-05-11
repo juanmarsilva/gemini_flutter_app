@@ -9,7 +9,7 @@ part 'generated_images_provider.g.dart';
 
 @riverpod
 class GeneratedImages extends _$GeneratedImages {
-  final GeminiImpl gemini = GeminiImpl();
+  final GeminiImpl _gemini = GeminiImpl();
 
   late final IsGenerating isGeneratingNotifier;
   late final GeneratedHistory generatedHistoryNotifier;
@@ -41,7 +41,7 @@ class GeneratedImages extends _$GeneratedImages {
   }) async {
     isGeneratingNotifier.setIsGenerating();
 
-    final imageUrl = await gemini.generateImage(prompt, files: images);
+    final imageUrl = await _gemini.generateImage(prompt, files: images);
 
     if (imageUrl == null) {
       isGeneratingNotifier.setIsNotGenerating();
@@ -56,7 +56,7 @@ class GeneratedImages extends _$GeneratedImages {
     isGeneratingNotifier.setIsNotGenerating();
 
     if (state.length == 1) {
-      generateImageWithPreviousPrompt();
+      await generateImageWithPreviousPrompt();
     }
   }
 
