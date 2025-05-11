@@ -8,6 +8,7 @@ class GeneratedHistory extends _$GeneratedHistory {
   List<String> build() => [];
 
   void addImage(String imageUrl) {
+    if (imageUrl == '') return;
     state = [imageUrl, ...state];
   }
 }

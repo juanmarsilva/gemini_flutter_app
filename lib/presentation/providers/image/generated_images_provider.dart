@@ -27,6 +27,7 @@ class GeneratedImages extends _$GeneratedImages {
   }
 
   void addImage(String imageUrl) {
+    if (imageUrl == '') return;
     generatedHistoryNotifier.addImage(imageUrl);
     state = [...state, imageUrl];
   }
