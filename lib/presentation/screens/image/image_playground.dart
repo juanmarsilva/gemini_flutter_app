@@ -4,6 +4,7 @@ import 'package:gemini_ui_app/config/theme/app_theme.dart';
 import 'package:gemini_ui_app/presentation/providers/image/generated_images_provider.dart';
 import 'package:gemini_ui_app/presentation/providers/image/is_generating_provider.dart';
 import 'package:gemini_ui_app/presentation/providers/image/selected_art_provider.dart';
+import 'package:gemini_ui_app/presentation/providers/image/selected_image_provider.dart';
 
 import 'package:gemini_ui_app/presentation/widgets/chat/custom_bottom_input.dart';
 import 'package:gemini_ui_app/presentation/widgets/images/history_grid.dart';
@@ -47,12 +48,21 @@ class ImagePlaygroundScreen extends ConsumerWidget {
 
           // Espacio para el prompt
           CustomBottomInput(
-            onSend: (partialText, {List<XFile> images = const []}) {
+            onSend: (partialText, {List<XFile> images = const []}) async {
               final generatedImagesNotifier = ref.read(
                 generatedImagesProvider.notifier,
               );
 
               final selectedStyle = ref.read(selectedArtStyleProvider);
+
+              final selectedImage =
+                  await ref
+                      .read(selectedImageProvider.notifier)
+                      .getXFileFromSelectedImage();
+
+              if (selectedImage != null) {
+                images.add(selectedImage);
+              }
 
               generatedImagesNotifier.clearImages();
 
